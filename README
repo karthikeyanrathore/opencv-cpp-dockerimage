@@ -1,0 +1,13 @@
+#  On How to run openCV C++ in mac arm systems?
+
+1. docker build  . --platform=linux/amd64 --no-cache
+2. docker run -dit --platform=linux/amd64 8dbb1772d0df
+3. docker exec -it 718dd76e5ccc bash
+4. export LD_LIBRARY_PATH=/usr/local/lib/
+5. g++  -c -I /usr/local/include/opencv4       test.cpp
+6. g++ test.o -lopencv_imgcodecs -lopencv_imgproc -lopencv_highgui -lopencv_core  -o main
+7. ./main
+
+ NOTE
+ * you can mount volume where all your cpp file/images will be present locally
+ * for example:  docker run -dit --platform=linux/amd64 8dbb1772d0df -v ${PWD}/local_dir:/tmp/
